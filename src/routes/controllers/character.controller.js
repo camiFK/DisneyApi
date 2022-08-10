@@ -1,10 +1,11 @@
 import {Character} from '../../models/Character.js'
+import { Movie } from '../../models/Movie.js'
 
 export const getCharacters = async (req, res) => {
     try {
 
         const allCharacters = await Character.findAll({
-            attributes: ['title', 'image', 'released']
+            attributes: ['name', 'image']
         })
 
         res.status(200).send(allCharacters)
@@ -15,11 +16,20 @@ export const getCharacters = async (req, res) => {
 
 export const postCharacter = async (req, res) => {
     try {
-        let {name, image, age, weight, story, movies} = req.body
+        let {name, image, age, weight, story, movie} = req.body
+        console.log(movie)
 
         const newCharacter = await Character.create({
             name, image, age, weight, story
         })
+
+        let movieSelected = await Movie.findAll({
+            where: {
+                title: movie
+            }
+        })
+
+        await newCharacter.addMovies(movieSelected)
         
         res.status(201).send(newCharacter)
         
@@ -64,6 +74,24 @@ export const deleteCharacter = async (req, res) => {
         })
 
         res.sendStatus(204)
+        
+    } catch (error) {
+        return res.status(500).json({message: error.message})
+    }
+}
+
+export const getCharacter = async (req, res) => {
+    try {
+
+        const {id} = req.params;
+
+        const character = await Character.findOne({
+            where: {
+                id
+            }
+        })
+
+        res.json(character)
         
     } catch (error) {
         return res.status(500).json({message: error.message})
