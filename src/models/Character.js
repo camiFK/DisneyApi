@@ -1,4 +1,4 @@
-import {DataTypes, UUID} from 'sequelize';
+import {DataTypes} from 'sequelize';
 import {sequelize} from '../database/database.js';
 
 export const Character = sequelize.define('character', {
@@ -24,3 +24,4 @@ export const Character = sequelize.define('character', {
         allowNull: false,
     }
 })
+

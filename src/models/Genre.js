@@ -1,5 +1,6 @@
-import {DataTypes, UUID} from 'sequelize';
+import {DataTypes} from 'sequelize';
 import {sequelize} from '../database/database.js';
+import {Movie} from './Movie.js';
 
 export const Genre = sequelize.define('genre', {
     name: {
@@ -11,3 +12,5 @@ export const Genre = sequelize.define('genre', {
         allowNull: false,
     }
 })
+
+Genre.belongsToMany(Movie, {through: 'genre_movie'});
