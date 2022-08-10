@@ -18,5 +18,9 @@ export const Movie = sequelize.define('movie', {
     rating: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+            min: 1,
+            max: 5
+        }
     }
 })
