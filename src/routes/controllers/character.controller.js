@@ -1,11 +1,10 @@
-import axios from 'axios'
 import {Character} from '../../models/Character.js'
 
 export const getCharacters = async (req, res) => {
     try {
 
         const allCharacters = await Character.findAll({
-            attributes: ['name', 'image']
+            attributes: ['title', 'image', 'released']
         })
 
         res.status(200).send(allCharacters)
@@ -22,7 +21,7 @@ export const postCharacter = async (req, res) => {
             name, image, age, weight, story
         })
         
-        res.status(200).send(newCharacter)
+        res.status(201).send(newCharacter)
         
     } catch (error) {
         return res.status(500).json({message: error.message})
