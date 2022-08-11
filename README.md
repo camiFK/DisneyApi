@@ -39,8 +39,8 @@ Develop an API to explore Disney's world, which allows us to know and modify the
 Endpoints:
 - GET /characters: lists all characters.
 - POST /characters: post a new character.
-- PUT /characters/:id: update character.
-- DELETE /characters/:id: delete character.
+- PUT /characters/id: update character.
+- DELETE /characters/id: delete character.
 
 ### 5. Character detail
 - Endpoint: /characters/:id
@@ -61,8 +61,8 @@ It allows searching and filtering by: name, age, and weight where search terms a
 Endpoints:
 - GET /movies: lists all movies.
 - POST /movies: post a new movie.
-- PUT /movies/:id: update movie.
-- DELETE /movies/:id: delete movie.
+- PUT /movies/id: update movie.
+- DELETE /movies/id: delete movie.
 
 
 
