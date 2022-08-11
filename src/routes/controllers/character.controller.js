@@ -4,27 +4,27 @@ import { Op } from "sequelize";
 
 export const getCharacters = async (req, res, next) => {
   try {
-    const {name, age, weight} = req.query;
-    
+    const { name, age, weight, movies } = req.query;
+
     const allCharacters = await Character.findAll({
       attributes: ["name", "image"],
     });
 
-    if (name || age || weight) {
+    if (name || age || weight || movies) {
       const characterFiltered = await Character.findAll({
         where: {
           [Op.or]: [
             { name: { [Op.like]: `%${name}%` } },
             { age: { [Op.eq]: age } },
             { weight: { [Op.eq]: weight } },
-          ]
+            { movies: { [Op.eq]: movies } },
+          ],
         },
       });
       return res.status(200).json(characterFiltered);
     } else {
       return res.status(200).json(allCharacters);
     }
-    
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
