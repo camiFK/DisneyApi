@@ -4,13 +4,22 @@ import { Movie } from '../../models/Movie.js'
 export const getCharacters = async (req, res) => {
     try {
 
+        const {name} = req.query;
         const allCharacters = await Character.findAll({
             attributes: ['name', 'image']
         })
 
-        res.status(200).send(allCharacters)
+        if(name) {
+            let filteredCharacters = allCharacters.filter(character => character.name.toLowerCase().includes(name.toLowerCase()))
+            filteredCharacters.length
+            ? res.status(200).send(filteredCharacters)
+            : res.status(404).send('Error')
+        } else {
+            res.status(200).send(allCharacters)
+        }
+
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({message: error.message})  
     }
 }
 
@@ -88,7 +97,15 @@ export const getCharacter = async (req, res) => {
         const character = await Character.findOne({
             where: {
                 id
+            },
+            include: {
+                model: Movie,
+                attributes: ['title'],
+                through: {
+                    attributes: []
+                  }
             }
+
         })
 
         res.json(character)
