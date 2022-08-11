@@ -23,5 +23,5 @@ export const Character = sequelize.define('character', {
         type: DataTypes.TEXT,
         allowNull: false,
     }
-})
+}, {timestamps: false})
 

@@ -8,4 +8,4 @@ export const CharacterMovie = sequelize.define('character_movie', {
         allowNull: false,
         primaryKey: true
     }
-})
+}, {timestamps: false})
