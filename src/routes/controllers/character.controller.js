@@ -20,7 +20,7 @@ export const getCharacters = async (req, res, next) => {
        include: [{
          model: Movie,
          where: moviesQuery,
-         attributes: ["title"]
+         attributes: []
        }]
      })
 
