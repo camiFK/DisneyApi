@@ -10,5 +10,5 @@ export const Genre = sequelize.define('genre', {
         type: DataTypes.STRING,
         allowNull: false,
     }
-}, {timestamps: false})
+})
 

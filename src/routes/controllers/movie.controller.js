@@ -11,19 +11,19 @@ export const getMovies = async (req, res) => {
         const genresQuery = {}
 
         if (name) { queries.title = { [Op.like]: `%${name}%` }; }
-        // if (genre) { genresQuery.id = genre }
+        if (genre) { genresQuery.id = genre }
 
         const allMovies = await Movie.findAll({
             attributes: ['title', 'image', 'released'],
             where: queries,
-            // include: [{
-            //   model: Genre,
-            //   where: genresQuery,
-            //   attributes: []
-            // }]
+             include: [{
+               model: Genre,
+               where: genresQuery,
+               attributes: []
+             }]
         })
 
-        res.status(200).send(allMovies)
+       return res.send(allMovies)
         
     } catch (error) {
         return res.status(500).json({message: error.message})
@@ -32,11 +32,19 @@ export const getMovies = async (req, res) => {
 
 export const postMovie = async (req, res) => {
     try {
-        let {title, image, released, rating} = req.body;
+        let {title, image, released, rating, genre} = req.body;
 
         const newMovie = await Movie.create({
             title, image, released, rating
         })
+
+        let movieSelected = await Genre.findAll({
+            where: {
+                name: genre,
+            }
+        })
+
+        await newMovie.addGenres(movieSelected);
 
         res.status(201).send(newMovie)
         

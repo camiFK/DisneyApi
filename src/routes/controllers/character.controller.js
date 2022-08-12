@@ -34,7 +34,6 @@ export const getCharacters = async (req, res, next) => {
 export const postCharacter = async (req, res) => {
   try {
     let { name, image, age, weight, story, movie } = req.body;
-    console.log(movie);
 
     const newCharacter = await Character.create({
       name,
