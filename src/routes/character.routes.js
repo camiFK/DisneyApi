@@ -1,14 +1,11 @@
-import {Router} from 'express'
-import { getCharacters, postCharacter, updateCharacter, deleteCharacter, getCharacter } from './controllers/character.controller.js'
+const express = require('express');
+const router = express.Router();
+const characterController = require('./controllers/characterController')
 
-const router = Router()
+router.get('/characters', characterController.getCharacters)
+router.post('/characters', characterController.postCharacter)
+router.put('/characters/:id', characterController.updateCharacter)
+router.delete('/characters/:id', characterController.deleteCharacter)
+router.get('/characters/:id', characterController.getCharacter);
 
-router.get('/characters', getCharacters)
-router.post('/characters', postCharacter)
-router.put('/characters/:id', updateCharacter)
-router.delete('/characters/:id', deleteCharacter)
-router.get('/characters/:id', getCharacter);
-
-
-
-export default router;
+module.exports = router;

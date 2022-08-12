@@ -1,11 +1,13 @@
-import {DataTypes} from 'sequelize';
-import {sequelize} from '../database/database.js';
+const {DataTypes} = require('sequelize')
+const sequelize = require('../database/db')
 
-export const MovieGenre = sequelize.define('movie_genre', {
+const MovieGenre = sequelize.define('movie_genre', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     }
-},)
+})
+
+module.exports = MovieGenre;

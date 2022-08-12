@@ -46,7 +46,7 @@ Endpoints:
 - Endpoint: /characters/:id
 - Shows: all the information about a particular character, including associated movies.
 
-### 6. Searching and filtering
+### 6. Searching and filtering Characters
 Endpoints:
 - GET /characters?name=name
 - GET /characters?age=age
@@ -69,6 +69,13 @@ Endpoints:
 - POST /movies: post a new movie.
 - PUT /movies/id: update movie.
 - DELETE /movies/id: delete movie.
+
+### 10. Searching and filtering Movies
+Endpoints:
+- GET /movies?name=name
+- GET /movies?genre=idGenre
+
+It allows searching and filtering by: name, and genres where search terms are sent as query parameters.
 
 
 

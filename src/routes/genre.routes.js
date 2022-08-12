@@ -1,10 +1,10 @@
-import {Router} from 'express'
-import {postGenre, getGenre} from './controllers/genre.controller.js'
+const {Router} = require('express')
+const genreController = require('./controllers/genreController.js')
 
 const router = Router()
 
-router.get('/genre', getGenre)
-router.post('/genre', postGenre)
+router.get('/genre', genreController.getGenre)
+router.post('/genre', genreController.postGenre)
 
 
-export default router;
+module.exports = router;

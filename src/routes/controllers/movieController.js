@@ -1,9 +1,9 @@
-import {Movie} from '../../models/Movie.js'
-import {Genre} from '../../models/Genre.js'
-import { Character } from '../../models/Character.js'
-import { Op } from "sequelize";
+const Movie = require('../../models/Movie.js')
+const Genre = require('../../models/Genre.js')
+const Character = require('../../models/Character.js')
+const { Op } = require("sequelize")
 
-export const getMovies = async (req, res) => {
+const getMovies = async (req, res) => {
     try {
         const {name, genre} = req.query;
 
@@ -30,7 +30,7 @@ export const getMovies = async (req, res) => {
     }
 }
 
-export const postMovie = async (req, res) => {
+const postMovie = async (req, res) => {
     try {
         let {title, image, released, rating, genre} = req.body;
 
@@ -53,7 +53,7 @@ export const postMovie = async (req, res) => {
     }
 }
 
-export const updateMovie = async (req, res) => {
+const updateMovie = async (req, res) => {
     try {
 
         const {id} = req.params;
@@ -75,7 +75,7 @@ export const updateMovie = async (req, res) => {
     }
 }
 
-export const deleteMovie = async (req, res) => {
+const deleteMovie = async (req, res) => {
     try {
         const {id} = req.params;
 
@@ -92,7 +92,7 @@ export const deleteMovie = async (req, res) => {
     }
 }
 
-export const getMovie = async (req, res) => {
+const getMovie = async (req, res) => {
     try {
         const {id} = req.params;
 
@@ -115,4 +115,12 @@ export const getMovie = async (req, res) => {
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
+}
+
+module.exports = {
+    getMovies,
+    postMovie,
+    updateMovie,
+    deleteMovie,
+    getMovie
 }

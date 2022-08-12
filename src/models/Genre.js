@@ -1,7 +1,7 @@
-import {DataTypes} from 'sequelize';
-import {sequelize} from '../database/database.js';
+const {DataTypes} = require('sequelize')
+const sequelize = require('../database/db')
 
-export const Genre = sequelize.define('genre', {
+const Genre = sequelize.define('genre', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -12,3 +12,4 @@ export const Genre = sequelize.define('genre', {
     }
 })
 
+module.exports = Genre;

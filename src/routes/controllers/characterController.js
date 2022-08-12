@@ -1,8 +1,8 @@
-import { Character } from "../../models/Character.js";
-import { Movie } from "../../models/Movie.js";
-import { Op } from "sequelize";
+const Character = require( "../../models/Character")
+const Movie = require("../../models/Movie")
+const { Op } = require("sequelize")
 
-export const getCharacters = async (req, res, next) => {
+ const getCharacters = async (req, res, next) => {
   try {
     const { name, age, weight, movies} = req.query;
     
@@ -31,7 +31,7 @@ export const getCharacters = async (req, res, next) => {
   }
 };
 
-export const postCharacter = async (req, res) => {
+ const postCharacter = async (req, res) => {
   try {
     let { name, image, age, weight, story, movie } = req.body;
 
@@ -57,7 +57,7 @@ export const postCharacter = async (req, res) => {
   }
 };
 
-export const updateCharacter = async (req, res) => {
+ const updateCharacter = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, image, age, weight, story, movies } = req.body;
@@ -79,7 +79,7 @@ export const updateCharacter = async (req, res) => {
   }
 };
 
-export const deleteCharacter = async (req, res) => {
+ const deleteCharacter = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -95,7 +95,7 @@ export const deleteCharacter = async (req, res) => {
   }
 };
 
-export const getCharacter = async (req, res) => {
+ const getCharacter = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -117,3 +117,11 @@ export const getCharacter = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+module.exports = {
+  getCharacters,
+  postCharacter,
+  updateCharacter,
+  deleteCharacter,
+  getCharacter,
+}

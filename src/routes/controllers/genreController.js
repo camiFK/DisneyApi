@@ -1,6 +1,6 @@
-import { Genre } from "../../models/Genre.js";
+const Genre = require("../../models/Genre.js")
 
-export const postGenre = async (req, res) => {
+const postGenre = async (req, res) => {
     try {
         let {name, image} = req.body;
 
@@ -16,7 +16,7 @@ export const postGenre = async (req, res) => {
     }
 }
 
-export const getGenre = async (req, res) => {
+const getGenre = async (req, res) => {
     try {
         const allGenres = await Genre.findAll({
             attributes: ['name', 'image']
@@ -25,4 +25,9 @@ export const getGenre = async (req, res) => {
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
+}
+
+module.exports = {
+    postGenre,
+    getGenre
 }

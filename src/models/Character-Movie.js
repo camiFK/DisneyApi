@@ -1,7 +1,7 @@
-import {DataTypes} from 'sequelize';
-import {sequelize} from '../database/database.js';
+const {DataTypes} = require('sequelize')
+const sequelize = require('../database/db')
 
-export const CharacterMovie = sequelize.define('character_movie', {
+const CharacterMovie = sequelize.define('character_movie', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -9,3 +9,5 @@ export const CharacterMovie = sequelize.define('character_movie', {
         primaryKey: true
     }
 }, {timestamps: false})
+
+module.exports = CharacterMovie;

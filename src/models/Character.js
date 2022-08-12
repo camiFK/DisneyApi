@@ -1,7 +1,7 @@
-import {DataTypes} from 'sequelize';
-import {sequelize} from '../database/database.js';
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../database/db')
 
-export const Character = sequelize.define('character', {
+const Character = sequelize.define('character', {
     image: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -25,3 +25,4 @@ export const Character = sequelize.define('character', {
     }
 }, {timestamps: false})
 
+module.exports = Character;

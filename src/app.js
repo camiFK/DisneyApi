@@ -1,10 +1,17 @@
-import express from 'express'
-import morgan from "morgan";
-import cors from 'cors'
+const express = require('express')
+const morgan = require("morgan")
+const cors = require('cors')
 
-import characterRoutes from './routes/character.routes.js'
-import movieRoutes from './routes/movies.routes.js'
-import genreRoutes from './routes/genre.routes.js'
+const characterRoutes = require('./routes/character.routes')
+const movieRoutes = require('./routes/movies.routes')
+const genreRoutes = require('./routes/genre.routes')
+
+const Character = require("./models/Character")
+const Movie  = require("./models/Movie")
+const Genre = require('./models/Genre')
+const CharacterMovie = require('./models/Character-Movie')
+const MovieGenre = require('./models/Movie-Genre')
+
 
 const app = express();
 app.use(express.json());
@@ -15,4 +22,10 @@ app.use(characterRoutes)
 app.use(movieRoutes)
 app.use(genreRoutes)
 
-export default app;
+Character.belongsToMany(Movie, {through: CharacterMovie});
+Movie.belongsToMany(Character, {through: CharacterMovie});
+
+Genre.belongsToMany(Movie, {through: MovieGenre});
+Movie.belongsToMany(Genre, {through: MovieGenre});
+
+module.exports = app;
