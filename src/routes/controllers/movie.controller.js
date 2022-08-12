@@ -1,12 +1,30 @@
 import {Movie} from '../../models/Movie.js'
+import {Genre} from '../../models/Genre.js'
 import { Character } from '../../models/Character.js'
+import { Op } from "sequelize";
 
 export const getMovies = async (req, res) => {
     try {
+        const {name, genre} = req.query;
+
+        const queries = {}
+        const genresQuery = {}
+
+        if (name) { queries.title = { [Op.like]: `%${name}%` }; }
+        // if (genre) { genresQuery.id = genre }
+
         const allMovies = await Movie.findAll({
-            attributes: ['title', 'image', 'released']
+            attributes: ['title', 'image', 'released'],
+            where: queries,
+            // include: [{
+            //   model: Genre,
+            //   where: genresQuery,
+            //   attributes: []
+            // }]
         })
+
         res.status(200).send(allMovies)
+        
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
@@ -83,7 +101,7 @@ export const getMovie = async (req, res) => {
             }
 
         })
-        
+
         res.json(movie)
         
     } catch (error) {

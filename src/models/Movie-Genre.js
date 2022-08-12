@@ -8,4 +8,4 @@ export const MovieGenre = sequelize.define('movie_genre', {
         allowNull: false,
         primaryKey: true
     }
-}, {timestamps: false})
+},)
