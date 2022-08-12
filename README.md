@@ -51,11 +51,17 @@ Endpoints:
 - GET /characters?name=name
 - GET /characters?age=age
 - GET /characters?weight=weight
-It allows searching and filtering by: name, age, and weight where search terms are sent as query parameters.
+- GET /characters?movies=idMovie
+
+It allows searching and filtering by: name, age, weight, and movies where search terms are sent as query parameters.
 
 ### 7. Movies list
 - Endpoint: /movies
 - Shows: Image, title, and released date
+
+### 8. Movie detail
+- Endpoint: /movies/:id
+- Shows: all the information about a particular movie, including associated characters.
 
 ### 9. Create, Read, Update and Delete movie (CRUD)
 Endpoints:

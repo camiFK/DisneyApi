@@ -1,4 +1,5 @@
 import {Movie} from '../../models/Movie.js'
+import { Character } from '../../models/Character.js'
 
 export const getMovies = async (req, res) => {
     try {
@@ -59,6 +60,31 @@ export const deleteMovie = async (req, res) => {
         })
 
         res.sendStatus(204)
+        
+    } catch (error) {
+        return res.status(500).json({message: error.message})
+    }
+}
+
+export const getMovie = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const movie = await Movie.findOne({
+            where: {
+                id
+            },
+            include: {
+                model: Character,
+                attributes: ["name"],
+                through: {
+                    attributes: [],
+                  },
+            }
+
+        })
+        
+        res.json(movie)
         
     } catch (error) {
         return res.status(500).json({message: error.message})
