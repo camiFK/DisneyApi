@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(cors())
 app.use(morgan("dev"));
 
+
 app.use(characterRoutes)
 app.use(movieRoutes)
 app.use(genreRoutes)
