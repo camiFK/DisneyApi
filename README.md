@@ -3,14 +3,15 @@
 This project was created for educational purposes as part of Alkemy's acceleration program.
 
 ### Challenge
-Develop an API to explore Disney's world, which allows us to know and modify the characters that compose it and understand which movies they participated in. On the other hand, it must expose the information so that any front end can consume it.
+It is a Node-Express REST API to explore Disney's world, which allows you to meet and modify its movies and the characters that participated.
+The information is exposed for any frontend to consume it.
 
 - Use NodeJs and Express
-- Routes must follow REST patron.
+- Routes must follow REST architecture.
 - Use Sequelize
 
 ### Technical requirements
-#### 1. Database
+### 1. Database
 ##### Character:
 - Image
 - Name
@@ -30,6 +31,13 @@ Develop an API to explore Disney's world, which allows us to know and modify the
 - Image
 - Name
 - Associated Movies
+
+### 2. User authentication
+To make requests the user needs to authenticate first and get a token. 
+Endpoints:
+- POST /auth/register: create a user and get a token.
+- POST /auth/login: login with user credentials and token.
+
 
 ### 3. Character list
 - Endpoint: /characters
