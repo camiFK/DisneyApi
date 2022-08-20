@@ -85,5 +85,6 @@ Endpoints:
 
 It allows searching and filtering by: name, and genres where search terms are sent as query parameters.
 
-
+### 11. Emails
+When the user signs up, it receives a welcome email. It was made with SendGrid.
 
