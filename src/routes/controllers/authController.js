@@ -2,6 +2,7 @@ require("dotenv").config();
 const bcrypt = require('bcrypt')
 const User = require('../../models/User')
 const jwt = require('jsonwebtoken')
+const sendEmail = require('./emailController')
 
 const signUp = async (req, res) => {
     const {email, passwordDB} = req.body;
@@ -14,6 +15,8 @@ const signUp = async (req, res) => {
             email,
             passwordDB: encryptedPassword
         })
+
+        sendEmail(email);
 
         const token = jwt.sign({id: newUser.id},`${process.env.JWT_SECRET}`)
     

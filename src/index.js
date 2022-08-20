@@ -3,7 +3,7 @@ const sequelize = require('./database/db')
 
 async function server() {
     try {
-        await sequelize.sync({force: false}) // Syncronizes the database with the models
+        await sequelize.sync({force: true}) // Syncronizes the database with the models
         app.listen(3001)
         console.log('Server running on port 3001')
       } catch (error) {
